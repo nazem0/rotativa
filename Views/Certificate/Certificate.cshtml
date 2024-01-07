@@ -1,0 +1,40 @@
+﻿@model API.Models.Certificate
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="certificate">
+        <div>
+            <img id="logo" src="~/logo.png" />
+            <p class="display display-2 text-shadow">
+                @Model.Issuer
+            </p>
+        </div>
+        <div>
+            <p class="text-muted fw-bold">CERTIFICATE OF COMPLETION</p>
+            <p class="display display-1 text-center my-5">
+                @{
+                    int IssuanceYear = Model.IssuanceDate.Year;
+                }
+                @Model.Course @IssuanceYear
+            </p>
+        </div>
+        <div>
+            <p class="display display-2">@Model.RecipientName</p>
+            <p>Issuance Date <strong>@Model.IssuanceDate</strong></p>
+            @if (Model.ExpirationDate is not null)
+            {
+                <p>Expiration Date <strong>@Model.ExpirationDate</strong></p>
+            }
+            <p class="text-muted">
+                Certificate Key: @Model.Key
+            </p>
+        </div>
+    </div>
+</body>
+</html>
